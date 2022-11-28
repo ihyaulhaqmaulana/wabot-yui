@@ -35,7 +35,8 @@ const arrStorynime = [
 const arrWaifu = ['!waifu', '.waifu', '#waifu', 'waifu', '-waifu'];
 const arrBlush = ['!blush', '.blush', '#blush', 'blush', '-blush'];
 const arrPinterestImage = ['!ptimg', '.ptimg', '#ptimg', 'ptimg', '-ptimg', 'Ptimg'];
-const arrPinterestVideo = ['!ptvid', '.ptvid', '#ptvid', 'ptvid', '-ptvid', 'Ptvid']
+const arrPinterestVideo = ['!ptvid', '.ptvid', '#ptvid', 'ptvid', '-ptvid', 'Ptvid'];
+const arrSimSimi = ['!p', '.p', '#p', 'p', '-p', 'P']
 
 module.exports = {
   arrMenu,
@@ -55,5 +56,6 @@ module.exports = {
   arrBlush,
   arrLapor,
   arrPinterestImage,
-  arrPinterestVideo
+  arrPinterestVideo,
+  arrSimSimi
 };

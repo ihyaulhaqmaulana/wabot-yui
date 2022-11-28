@@ -21,20 +21,24 @@ const {
   arrBlush,
   arrLapor,
   arrPinterestVideo,
-  arrPinterestImage
+  arrPinterestImage,
+  arrSimSimi
 } = require('../commands/command');
 
 const start = async (client) => {
   client.onMessage(async (message) => {
     const messBody = message.body;
     const splt = messBody.split(' ');
+    const splt2 = messBody.split(' ')
+    splt2.shift()
+    const mess = splt2.join(' ')
 
     try {
       // Menu
       if (arrMenu.includes(messBody.toLowerCase())) {
         await client.sendText(
           message.from,
-          'List menu bot saat ini\n\n1. Gambar ke stiker\n2. Video ke stiker (bisa tapi ada sedikit isu ukuran file)\n3. Stiker ke gambar\n4. Fb Video Downloader\n5. Tiktok Downloader\n6. YT Downloader\n7. YT Mp3 Downloader\n8. Instagram Video Downloader\n9. Twitter Video Downloader \n~10. Pinterest Image Downloader~\n~11. Pinterest Video Downloader~\n\nKetik *!help* untuk cara penggunaan'
+          'List menu bot saat ini\n\n1. Gambar ke stiker\n2. Video ke stiker (bisa tapi ada sedikit isu ukuran file)\n3. Stiker ke gambar\n4. Fb Video Downloader\n5. Tiktok Downloader\n6. YT Downloader\n7. YT Mp3 Downloader\n8. Instagram Video Downloader\n9. Twitter Video Downloader \n~10. Pinterest Image Downloader~\n~11. Pinterest Video Downloader~\n12. Ngobrol sama bot\nKetik *!help* untuk cara penggunaan'
         );
       }
 
@@ -42,7 +46,7 @@ const start = async (client) => {
       if (arrHelp.includes(messBody.toLowerCase())) {
         await client.sendText(
           message.from,
-          'Cara memakai bot ini:\n\n1. Kirim gambar atau video untuk mengubah menjadi stiker\n2. Kirim stiker untuk mengubah ke gambar\n3. FB video downloader (contoh: *!fb* https://fb.com)\n4. Tiktok downloader (contoh: *!tiktok* https://tiktok.com)\n5. YT downloader (contoh: *!yt* https://youtube.com)\n6. YT Mp3 downloader (contoh *!ytmp3* https://youtube.com)\n7. Instagram video downloader (contoh: *!ig* https://instagram.com)\n8. Twitter video downloader (contoh: *!twitter* https://twitter.com)\n~9. Pinterest Image downloader (contoh: *!ptimg* https://pinterest.com)~\n~10. Pinterest Video Downloader (contoh: *!ptvid* https://pinterest.com)~\n\nCatatan: Apabila bot tidak merespon, server yang digunakan bot sedang tidak aktif. Atau bisa chat owner wa.me/6285747490856 bila bot bermasalah'
+          'Cara memakai bot ini:\n\n1. Kirim gambar atau video untuk mengubah menjadi stiker\n2. Kirim stiker untuk mengubah ke gambar\n3. FB video downloader (contoh: *!fb* https://fb.com)\n4. Tiktok downloader (contoh: *!tiktok* https://tiktok.com)\n5. YT downloader (contoh: *!yt* https://youtube.com)\n6. YT Mp3 downloader (contoh *!ytmp3* https://youtube.com)\n7. Instagram video downloader (contoh: *!ig* https://instagram.com)\n8. Twitter video downloader (contoh: *!twitter* https://twitter.com)\n~9. Pinterest Image downloader (contoh: *!ptimg* https://pinterest.com)~\n~10. Pinterest Video Downloader (contoh: *!ptvid* https://pinterest.com)~\n\nNgobrol sama bot tinggal kasih command *!p* didepannya (Contoh: !p halo bang)\nCatatan: Apabila bot tidak merespon, server yang digunakan bot sedang tidak aktif. Atau bisa chat owner wa.me/6285747490856 bila bot bermasalah'
         );
       }
 
@@ -201,6 +205,7 @@ const start = async (client) => {
             result.result,
             `${Date.now()}.mp4`
           );
+            console.log('Success Send FB vid');
         } else {
           await client.reply(message.from, 'Url tidak valid', message.id)
         }
@@ -221,6 +226,7 @@ const start = async (client) => {
             result.result.link,
             `${Date.now()}.mp4`
           );
+          console.log('Success send tiktok vid');
         } else {
           await client.reply(message.from, 'Url tidak valid', message.id)
         }
@@ -241,6 +247,7 @@ const start = async (client) => {
             result.result.link.link,
             `${Date.now()}.mp4`
           );
+          console.log('Success send vid yt');
         } else {
           await client.reply(message.from, 'Url tidak valid', message.id)
         }
@@ -260,6 +267,7 @@ const start = async (client) => {
             result.result.media[0],
             `${Date.now()}.mp4`
           );
+          console.log('Success send vid ig');
         } else {
           await client.reply(message.from, 'Url tidak valid', message.id)   
         }
@@ -279,6 +287,7 @@ const start = async (client) => {
             result.result.link[0].link,
             `${Date.now()}.mp4`
           );
+          console.log('Success send vid twitter');
         } else {
           await client.reply(message.from, 'Url tidak valid', message.id)
         }
@@ -298,6 +307,7 @@ const start = async (client) => {
             result.result.link.link,
             'yt.mp3'
           );
+          console.log('Success send ytmp3');
         } else {
           await client.reply(message.from, 'Url tidak valid', message.id)
         }
@@ -361,6 +371,16 @@ const start = async (client) => {
           result.result,
           `${Date.now()}.mp4`
         );
+      }
+
+      // SimSimi
+      if (arrSimSimi.includes(splt[0])) {
+        const response = await fetch(
+          `https://api.lolhuman.xyz/api/simi?apikey=${config.lol}&text=${mess}`
+        );
+        const result = await response.json()
+
+        await client.sendText(message.from, result.result)
       }
 
       // Random Waifu
