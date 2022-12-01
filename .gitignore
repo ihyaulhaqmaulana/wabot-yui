@@ -1,6 +1,11 @@
-/_IGNORE_yui
-/.node-persist
 /node_modules
-
 config.json
-yui.data.json
+package-lock.json
+yarn.lock
+.prettierrc
+
+# managed by open-wa
+**.data.json
+**.node-persist**
+**_IGNORE_**
+# end managed by open-wa

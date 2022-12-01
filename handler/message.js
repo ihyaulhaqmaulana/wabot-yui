@@ -376,7 +376,7 @@ const start = async (client) => {
       // SimSimi
       if (arrSimSimi.includes(splt[0])) {
         const response = await fetch(
-          `https://api.lolhuman.xyz/api/simi?apikey=${config.lol}&text=${mess}`
+          `https://api.lolhuman.xyz/api/simi?apikey=${config.lol}&text=${mess}&badword=false`
         );
         const result = await response.json()
 
